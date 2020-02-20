@@ -12,5 +12,9 @@ class SubmissionMaker():
       for book in library.books:
          self.books.add(book)
    
-   def makeSubmission(self):
-      submission = open("submission.txt","a") 
+   def makeSubmission(self): ## still need to write added books
+      submission = open("submission.txt","a")
+      submission.write(self.libraryCount)
+      for library in self.libraries.keys():
+         submission.write(library + " " + libraries.get(library))
+         ## sort library books and write here
