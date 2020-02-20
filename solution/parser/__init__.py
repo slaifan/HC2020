@@ -14,9 +14,11 @@ def parse(data_file_path):
                 _, signup_days, scan_rate = line.split()
                 signup_days = int(signup_days)
                 scan_rate = int(scan_rate)
-                libraries.append(Library(i // 2, signup_days, scan_rate))
+                libraries.append(Library(i // 2 - 1, signup_days, scan_rate))
             else:
                 libraries[len(libraries) - 1].books = [books[int(book_id)] for book_id in line.split()]
+        for library in libraries:
+            library.books.sort(key=lambda book: -book.score)
     return ParseResults(books, libraries, days)
 
 class ParseResults():

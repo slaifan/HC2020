@@ -1,15 +1,24 @@
+import os
 import sys
 
+from heuristics import heuristic
 from parser import parse
+from submission import SubmissionMaker
 
 
 if __name__ == '__main__':
-    data_file_path = sys.argv[1]
-    results = parse(data_file_path)
-    print(f'There are {len(results.libraries)} libraries, {len(results.books)} books, and {results.days} days')
-    book_scores = [book.score for book in results.books]
-    print(f'The scores of the books are {book_scores}')
-    for library in results.libraries:
-        print(f'Library {library.id} has {len(library.books)} books, the signup process takes {library.signup_days} days, and the library can ship {library.scan_rate} books per day.')
-        book_ids = [book.id for book in library.books]
-        print(f'The books in library {library.id} are: {book_ids}')
+    for file_path in sys.argv[1:]:
+        print(file_path)
+        data_file_path = file_path
+        results = parse(data_file_path)
+        submission_maker = SubmissionMaker(os.path.basename(file_path))
+        current_days = 0
+        while len(results.libraries) > 0 and current_days < results.days:
+            library = heuristic().getNextLib(results.libraries)
+            results.libraries.remove(library)
+            submission_maker.addLibrary(library)
+            current_days += library.signup_days
+            lifetime_nbooks = (results.days - current_days) * library.scan_rate 
+            for book in library.books[:lifetime_nbooks]:
+                book.banned = True
+        submission_maker.makeSubmission()

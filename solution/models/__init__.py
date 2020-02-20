@@ -5,6 +5,9 @@ class Library():
         self.scan_rate = scan_rate
         self.books = []
 
+    def __str__(self):
+        return str(self.id)
+
 
 class Book():
     def __init__(self, id_, score):
