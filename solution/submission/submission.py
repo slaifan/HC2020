@@ -1,7 +1,7 @@
 class SubmissionMaker():
    def __init__(self):
       self.libraryCount = 0
-      self.libraries = {}     ## format: {library: book number}
+      self.libraries = {}     ## format: {id : len books}
       self.books = set()
 
    def addLibrary(self, library): ## when scanning a library
@@ -12,5 +12,13 @@ class SubmissionMaker():
       for book in library.books:
          self.books.add(book)
    
-   def makeSubmission(self):
-      submission = open("submission.txt","a") 
+   def makeSubmission(self): ## still need to write added books
+      submission = open("submission.txt","a")
+      submission.write(self.libraryCount)
+      for library in self.libraries.keys():
+         submission.write(library + " " + libraries.get(library))
+         bookcol = ""
+         for book in self.getBooks(library):
+            bookcol += book.id + " "
+         submission.write(bookcol)
+         submission.close()
