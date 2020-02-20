@@ -1,7 +1,7 @@
 class SubmissionMaker():
    def __init__(self):
       self.libraryCount = 0
-      self.libraries = {}     ## format: {library: book number}
+      self.libraries = {}     ## format: {id : len books}
       self.books = set()
 
    def addLibrary(self, library): ## when scanning a library
@@ -17,4 +17,12 @@ class SubmissionMaker():
       submission.write(self.libraryCount)
       for library in self.libraries.keys():
          submission.write(library + " " + libraries.get(library))
+<<<<<<< HEAD
+         bookcol = ""
+         for book in self.getBooks(library):
+            bookcol += book.id + " "
+         submission.write(bookcol)
+         submission.close()
+=======
          ## sort library books and write here
+>>>>>>> 677cba6774c3e1cd6c90a9d902d84e6f1f35fb7b
