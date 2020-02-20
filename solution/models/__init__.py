@@ -10,3 +10,4 @@ class Book():
     def __init__(self, id_, score):
         self.id = id_
         self.score = score
+        self.banned = False
