@@ -21,4 +21,4 @@ class SubmissionMaker():
          for book in self.getBooks(library):
             bookcol += book.id + " "
          submission.write(bookcol)
-         submission.close()
+      submission.close()
