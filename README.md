@@ -1,7 +1,7 @@
 # HC2020
 
 This project is for designing an algorithm to be used in Google Hashcode 2020 coding competition.
-The full details of the challenge can be found in the pdf file in this repo.
+The full details of the challenge can be found [here](https://github.com/slaifan/HC2020/blob/master/hashcode_2020_online_qualification_round.pdf).
 
 ## Summary:
 Given a description of libraries and books available, plan which books to scan from
